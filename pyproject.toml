@@ -13,6 +13,8 @@ dependencies = [
     "pillow (==12.2.0)",
     "sqlalchemy[asyncio] (==2.0.50)",
     "aiosqlite (==0.22.1)",
+    "alembic (==1.18.4)",
+    "requests (>=2.34.2,<3.0.0)",
 ]
 
 [tool.poetry]
