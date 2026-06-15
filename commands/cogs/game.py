@@ -1,10 +1,10 @@
 from io import BytesIO
 
 import discord
-from discord.commands import slash_command
+from discord import SlashCommandGroup
 from discord.ext import commands
 
-from config import LOGGER
+from config import LOGGER, MAGIC_COLOR
 from utils.database import User
 from utils.database.dao.users import UserDao
 from utils.image_generator import LeaderboardGenerator, LeaderboardUser
@@ -12,11 +12,7 @@ from utils.image_generator import LeaderboardGenerator, LeaderboardUser
 
 def get_medal_emoji(position: int) -> str:
     """Get the medal emoji based on the user's position."""
-    icons: dict[int, str] = {
-        1: "🥇",
-        2: "🥈",
-        3: "🥉"
-    }
+    icons: dict[int, str] = {1: "🥇", 2: "🥈", 3: "🥉"}
 
     return icons.get(position, f"#{position}")
 
@@ -27,6 +23,10 @@ class Game(commands.Cog):
     def __init__(self, bot: discord.Bot):
         self.bot = bot
         self.leaderboard_generator = LeaderboardGenerator()
+
+    jd4h = SlashCommandGroup(
+        name="jd4h", description="Commands for the 4h game"
+    )
 
     async def get_user_data(self, users: list[type[User]]):
         users_response = []
@@ -40,7 +40,7 @@ class Game(commands.Cog):
                 users_response.append(user_)
         return users_response
 
-    @slash_command()
+    @jd4h.command()
     async def leaderboard(self, ctx) -> None:
         """Show game leaderboard."""
         await ctx.defer()  # Defer the response to allow for longer processing time
@@ -65,8 +65,8 @@ class Game(commands.Cog):
 
         await ctx.respond(file=file)
 
-    @slash_command()
-    async def score(self, ctx, member:discord.Member=None) -> None:
+    @jd4h.command()
+    async def score(self, ctx, member: discord.Member | None = None) -> None:
         """Check your score."""
         if not ctx.guild:
             return
@@ -80,7 +80,7 @@ class Game(commands.Cog):
         embed = discord.Embed(
             title="🎪 Le jeu des 4h",
             description=f"Le score de <@{user_id}> est **{user.score}**",
-            colour=discord.Colour(5220337),
+            colour=discord.Colour(MAGIC_COLOR),
         )
 
         await ctx.respond(embed=embed)

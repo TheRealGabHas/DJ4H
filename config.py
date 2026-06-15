@@ -5,7 +5,6 @@ import pathlib
 
 from dotenv import load_dotenv
 
-
 load_dotenv()
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
@@ -21,6 +20,7 @@ if DEBUG_GUILD_ID is not None:
 
 
 DATABASE_PATH = os.getenv("DATABASE_PATH", "dj4h.db")
+MAGIC_COLOR = 5220337
 
 
 def setup_logging():
