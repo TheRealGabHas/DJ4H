@@ -1,4 +1,4 @@
-from sqlalchemy import BigInteger, Column, String
+from sqlalchemy import BigInteger, Column, Integer, String, Text
 
 from .connection import Base
 
@@ -31,9 +31,10 @@ class User(Base):
 class RNGdle(Base):
     __tablename__ = "rngdle"
 
-    user_id = Column(BigInteger, primary_key=True, nullable=False)
+    # SQLite autoincrement works reliably with INTEGER PRIMARY KEY
+    id = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
+    user_id = Column(BigInteger, nullable=False)
     guild_id = Column(BigInteger, nullable=False)
-    rng_username = Column(String(20), nullable=False)
     date = Column(BigInteger, nullable=False)
     score = Column(BigInteger, nullable=False)
     number = Column(BigInteger, nullable=False)
@@ -44,4 +45,4 @@ class RNGdleUser(Base):
 
     user_id = Column(BigInteger, primary_key=True, nullable=False)
     guild_id = Column(BigInteger, nullable=False)
-    rng_username = Column(String(20), nullable=False)
+    rng_username = Column(Text, nullable=False)

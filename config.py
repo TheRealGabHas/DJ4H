@@ -21,6 +21,8 @@ if DEBUG_GUILD_ID is not None:
 
 DATABASE_PATH = os.getenv("DATABASE_PATH", "dj4h.db")
 MAGIC_COLOR = 5220337
+# RNGdle sync interval in seconds (default 3600 = 1 hour)
+RNGDLE_SYNC_INTERVAL = int(os.getenv("RNGDLE_SYNC_INTERVAL", "3600"))
 
 
 def setup_logging():
