@@ -1,5 +1,6 @@
-﻿import requests
-from datetime import datetime
+﻿from datetime import datetime
+
+import requests
 
 
 class UserRolls:
@@ -33,8 +34,11 @@ class RNGdle:
         )
 
     def get_user_rolls(
-        self, username, previous_roll: list[UserRolls] = [], offset=0
+        self, username, previous_roll: list[UserRolls] | None = None, offset=0
     ) -> list[UserRolls] | None:
+        if previous_roll is None:
+            previous_roll = []
+
         url = self.api_url.format(username, offset)
         response = requests.get(url)
         if response.status_code == 200:
@@ -42,7 +46,7 @@ class RNGdle:
             user_roll = to_user_rolls(result["rolls"])
             previous_roll += user_roll
             if result["hasMore"]:
-                self.get_user_rolls(username, previous_roll, offset + 100)
+                return self.get_user_rolls(username, previous_roll, offset + 100)
             return previous_roll
         else:
             return None

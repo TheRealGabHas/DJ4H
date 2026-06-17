@@ -13,6 +13,7 @@ class RNGdle(commands.Cog):
     rng_group = SlashCommandGroup(name="rngdle", description="RNGDLE commands")
 
     @rng_group.command(description="Register an RNGDLE user")
+    @discord.default_permissions()
     async def register(
         self,
         ctx: discord.ApplicationContext,

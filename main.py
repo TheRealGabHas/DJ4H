@@ -2,6 +2,7 @@ import discord
 
 from config import BOT_TOKEN, DEBUG_GUILD_ID, LOGGER, setup_logging
 from utils.database import init_db
+from utils.tasks.rngdle_sync import schedule_rngdle_sync
 
 
 setup_logging()
@@ -20,6 +21,8 @@ async def on_ready():
     await init_db()
     LOGGER.info("Database initialized successfully.")
     LOGGER.info("------")
+    # Schedule the hourly RNGdle sync task
+    schedule_rngdle_sync(bot)
 
 
 bot.load_extensions("commands", recursive=True)
