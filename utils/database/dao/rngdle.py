@@ -116,7 +116,7 @@ class RNGdleDao:
                     RNGdle.date >= start_ts,
                     RNGdle.date < end_ts,
                 )
-                .order_by(RNGdle.date.asc())
+                .order_by(RNGdle.score.desc())
             )
 
             rows = await session.execute(query)
