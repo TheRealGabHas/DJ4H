@@ -9,7 +9,7 @@ from config import LOGGER
 
 class LeaderboardUser:
     user: discord.User
-    score: int
+    score: str
     rank: int
 
 
@@ -74,13 +74,16 @@ class LeaderboardGenerator:
             self.font_regular = ImageFont.load_default()
             self.font_small = ImageFont.load_default()
 
-    async def generate_leaderboard(self, users: list[LeaderboardUser]):
+    async def generate_leaderboard(
+        self, users: list[LeaderboardUser], offset: int = 0
+    ):
         """
         Generates the leaderboard image.
 
         Args:
             users (list): A list of dictionaries, each representing a user.
                           Expected keys: "username", "score", "avatar_path"..
+            offset (int): An optional offset for the score column.
         """
         total_height = self.HEADER_HEIGHT + (len(users) * self.ROW_HEIGHT)
         img = Image.new("RGB", (self.WIDTH, total_height), self.BG_COLOR)
@@ -95,7 +98,7 @@ class LeaderboardGenerator:
         headers = ["Rang", "Pseudo", "Score"]
         # Column widths are still conceptual for text placement
         # col_widths = [100, 450, 100]
-        x_offsets = [15, 190, 680]  # Starting X positions for text
+        x_offsets = [15, 190, 680 - offset]  # Starting X positions for text
 
         draw.text(
             (x_offsets[0], self.HEADER_HEIGHT / 2 - 15),
@@ -219,7 +222,7 @@ class LeaderboardGenerator:
             )
 
             # Score (Niv.)
-            score_x = 680  # X position for score
+            score_x = x_offsets[2]  # X position for score
             score_y = y_pos + (self.ROW_HEIGHT / 2) - 15
             draw.text(
                 (score_x, score_y),

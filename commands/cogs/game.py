@@ -5,6 +5,7 @@ from discord import SlashCommandGroup
 from discord.ext import commands
 
 from config import LOGGER, MAGIC_COLOR
+from utils import get_or_fetch_user
 from utils.database import User
 from utils.database.dao.users import UserDao
 from utils.image_generator import LeaderboardGenerator, LeaderboardUser
@@ -31,7 +32,7 @@ class Game(commands.Cog):
     async def get_user_data(self, users: list[type[User]]):
         users_response = []
         for user in users:
-            user_data = await self.bot.get_or_fetch_user(user.user_id)
+            user_data = await get_or_fetch_user(self.bot, user.user_id)
             if user_data:
                 user_ = LeaderboardUser()
                 user_.user = user_data

@@ -1,19 +1,50 @@
-﻿from typing import Sequence
+﻿from datetime import datetime, timedelta, timezone
+from typing import Sequence
 
 from sqlalchemy.sql.expression import select
 
 from utils.database import RNGdle, RNGdleUser, get_db
 
 
+def get_today_range():
+    now = datetime.now(timezone.utc)
+    start_of_day = now.replace(hour=0, minute=0, second=0, microsecond=0)
+    start_of_next_day = start_of_day + timedelta(days=1)
+
+    start_ts = int(start_of_day.timestamp()) * 1000
+    end_ts = int(start_of_next_day.timestamp()) * 1000
+    return start_ts, end_ts
+
+
 class RNGdleDao:
     @staticmethod
     async def register_user(user_id: int, guild_id: int, username: str) -> None:
         async for session in get_db():
+            # Try to find an existing entry for this user in this guild
+            existing = await session.execute(
+                select(RNGdleUser).filter(
+                    RNGdleUser.user_id == user_id,
+                    RNGdleUser.guild_id == guild_id,
+                )
+            )
+            existing_row = existing.scalars().first()
+
+            if existing_row is not None:
+                # Update the username if it changed
+                if existing_row.rng_username != username:
+                    existing_row.rng_username = username
+                    session.add(existing_row)
+                    await session.commit()
+                # else: nothing to do
+                return
+
+            # No existing entry -> create one
             rngdle_user = RNGdleUser(
                 user_id=user_id, guild_id=guild_id, rng_username=username
             )
             session.add(rngdle_user)
             await session.commit()
+            return
 
     @staticmethod
     async def get_registered_users(
@@ -69,3 +100,26 @@ class RNGdleDao:
             session.add(rng)
             await session.commit()
             return True
+
+    @staticmethod
+    async def get_today_scores(
+        guild_id: int,
+    ) -> Sequence[RNGdle] | None:
+        # Match the stored int date format: YYYYMMDD
+        start_ts, end_ts = get_today_range()
+
+        async for session in get_db():
+            query = (
+                select(RNGdle)
+                .filter(
+                    RNGdle.guild_id == guild_id,
+                    RNGdle.date >= start_ts,
+                    RNGdle.date < end_ts,
+                )
+                .order_by(RNGdle.date.asc())
+            )
+
+            rows = await session.execute(query)
+            return rows.scalars().all()
+
+        return None
