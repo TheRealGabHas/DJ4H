@@ -48,7 +48,7 @@ async def rngdle_daily_leaderboard_task(bot: discord.Bot) -> None:
             u = RNGdleLeaderboardUser()
             u.user = user
             u.score = format_number(score.score)
-            u.tirage = str(score.number)
+            u.tirage = f"{score.number:,}"
             u.rank = rank + 1
             leaderboard_users.append(u)
 

@@ -144,7 +144,7 @@ class RNGdle(commands.Cog):
             u = RNGdleLeaderboardUser()
             u.user = user
             u.score = format_number(score.score)
-            u.tirage = str(score.number)
+            u.tirage = f"{score.number:,}"
             u.rank = len(users) + 1
             users.append(u)
 
