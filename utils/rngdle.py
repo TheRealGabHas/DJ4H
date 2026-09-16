@@ -16,7 +16,7 @@ import requests
 from config import LOGGER
 
 ROOT_PATH = Path(__file__).parent.parent
-SCORE_TO_PERCENT_PATH = ROOT_PATH / "ressources" / "rngdle" / "score_to_percent.json"
+SCORE_TO_PERCENT_PATH = ROOT_PATH / "resources" / "rngdle" / "score_to_percent.json"
 COMPRESSED_SCORE_TO_PERCENT_PATH = SCORE_TO_PERCENT_PATH.with_stem("compressed_score_to_percent")
 
 
