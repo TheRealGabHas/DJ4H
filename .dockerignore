@@ -2,10 +2,7 @@
 .venv
 logs
 .idea
-.db.env
-.db.env.example
-.env
-.env.example
+.env*
 .gitignore
 compose.yaml
 README.md

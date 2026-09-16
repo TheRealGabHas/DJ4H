@@ -3,6 +3,8 @@
 __pycache__
 
 *.env
+.env.*
+!.env*.example
 logs/
 dj4h.db
 resources/rngdle/*.json
