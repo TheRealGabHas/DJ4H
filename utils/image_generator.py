@@ -102,7 +102,7 @@ class LeaderboardGenerator:
 
     def __init__(self):
         self.font_path: pathlib.Path | None = None
-        self.base_path: pathlib.Path = pathlib.Path(__file__).parent.resolve() / ".." / "ressources"
+        self.base_path: pathlib.Path = pathlib.Path(__file__).parent.resolve() / ".." / "resources"
 
         self._load_static_resources()
 
@@ -434,7 +434,7 @@ class ProfileGenerator:
     SUBTEXT_COLOR: ColorType = (170, 170, 170)
 
     def __init__(self):
-        self.base_path: pathlib.Path = pathlib.Path(__file__).parent.resolve() / ".." / "ressources"
+        self.base_path: pathlib.Path = pathlib.Path(__file__).parent.resolve() / ".." / "resources"
         self._load_fonts()
         self._load_images()
 
@@ -711,7 +711,7 @@ class ServerStatGenerator:
     SUBTEXT_COLOR = (170, 170, 170)
 
     def __init__(self):
-        self.base_path = pathlib.Path(__file__).parent.resolve() / ".." / "ressources"
+        self.base_path = pathlib.Path(__file__).parent.resolve() / ".." / "resources"
         self._load_fonts()
 
     def _load_fonts(self):
@@ -940,7 +940,7 @@ class OverallLeaderboardGenerator:
     ROW_ODD_COLOR = (45, 45, 45)
 
     def __init__(self):
-        self.base_path: pathlib.Path = pathlib.Path(__file__).parent.resolve() / ".." / "ressources"
+        self.base_path: pathlib.Path = pathlib.Path(__file__).parent.resolve() / ".." / "resources"
         self._load_fonts()
         self._load_images()
 
