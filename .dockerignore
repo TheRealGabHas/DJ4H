@@ -1,9 +1,12 @@
+.git
 .github
 .venv
 logs
 .idea
+__pycache__
+*.py[cod]
 .env*
 .gitignore
-compose.yaml
+compose*.yaml
 README.md
 Dockerfile
