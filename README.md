@@ -95,17 +95,11 @@ Required command parameters are shown in brackets (`[required]`) while optional 
 
 ## Configuration
 
-Create a `.env` file in the project root with the following variables:
-
-```env
-BOT_TOKEN=your_discord_bot_token
-DEBUG_GUILD_ID=your_dev_server_id  # Optional
-DATABASE_PATH=dj4h.db              # Optional, defaults to dj4h.db
+```bash
+cp .env.example .env
 ```
 
-- `BOT_TOKEN`: Your Discord bot token (required).
-- `DEBUG_GUILD_ID`: Discord server ID for development (optional).
-- `DATABASE_PATH`: Path to the SQLite database file (optional).
+Then fill in `BOT_TOKEN`. Every variable is documented in `.env.example`; the commented-out ones are optional and show their default value.
 
 ## Usage
 
