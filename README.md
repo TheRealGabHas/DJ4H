@@ -120,7 +120,7 @@ poetry run python main.py
 
 ```bash
 # Build and run with Docker Compose
-docker-compose -f compose-prod.yml up -d
+docker-compose -f compose.prod.yaml up -d
 ```
 
 Make a deployment
