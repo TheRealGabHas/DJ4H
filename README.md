@@ -9,7 +9,7 @@
 [![CI](https://github.com/GravenDev/DJ4H/actions/workflows/ci.yml/badge.svg)](https://github.com/GravenDev/DJ4H/actions/workflows/ci.yml)
 [![Build & Deploy DJ4H](https://github.com/GravenDev/DJ4H/actions/workflows/deploy.yml/badge.svg)](https://github.com/GravenDev/DJ4H/actions/workflows/deploy.yml)
 
-All the projects in the <code>AsyncCommunityDiscord</code> organisation are used by the discord server <code>
+All the projects in the <code>GravenDev</code> organisation are used by the discord server <code>
 discord.gg/graven</code> both by the moderators and the members.
 Most of the contributors are part of the staff but the members are also allowed to contribute.
 
@@ -20,7 +20,7 @@ Most of the contributors are part of the staff but the members are also allowed 
 | Global information |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 |--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Description        | DJ4H is a Discord bot designed to enhance server engagement. It includes features for tracking activity engagement, providing a dynamic and interactive experience for communities.                                                                                                                                                                                                                                                                                                                                          |
-| Collaborators      | <img src="https://avatars.githubusercontent.com/u/73261020?v=4" alt="drawing" width="25"/> [Gamingdy](https://github.com/Gamingdy),  <img src="https://avatars.githubusercontent.com/u/34105327?s=64&v=4" alt="drawing" width="25"/> [Lindwen](https://github.com/Lindwen), <img src="https://avatars.githubusercontent.com/u/1571189?s=64&v=4" alt="drawing" width="25"/> [Loïc R](https://github.com/Lramelot),  <img src="https://avatars.githubusercontent.com/u/69684024?s=64&v=4" alt="drawing" width="25"/> [GabHas](https://github.com/TheRealGabHas) |
+| Collaborators      | <img src="https://avatars.githubusercontent.com/u/73261020?v=4" alt="drawing" width="25"/> [Gamingdy](https://github.com/Gamingdy),  <img src="https://avatars.githubusercontent.com/u/34105327?s=64&v=4" alt="drawing" width="25"/> [Lindwen](https://github.com/Lindwen), <img src="https://avatars.githubusercontent.com/u/1571189?s=64&v=4" alt="drawing" width="25"/> [Loïc R](https://github.com/Lramelot),  <img src="https://avatars.githubusercontent.com/u/69684024?s=64&v=4" alt="drawing" width="25"/> [GabHas](https://github.com/TheRealGabHas), <img src="https://avatars.githubusercontent.com/u/26577763?s=64&v=4" alt="drawing" width="25"/> [AntoineJT](https://github.com/AntoineJT) |
 | Version            | 1.0.0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 
 ---
@@ -29,11 +29,9 @@ Most of the contributors are part of the staff but the members are also allowed 
 
 ![](https://img.shields.io/badge/State-In_production-green?style=for-the-badge)
 
-<!-- Replace with your repository URL -->
-![](https://img.shields.io/github/issues/AsyncCommunityDiscord/DJ4H?style=for-the-badge)
+![](https://img.shields.io/github/issues/GravenDev/DJ4H?style=for-the-badge)
 
-<!-- Replace with your repository URL -->
-![](https://img.shields.io/github/issues-pr/AsyncCommunityDiscord/DJ4H?style=for-the-badge)
+![](https://img.shields.io/github/issues-pr/GravenDev/DJ4H?style=for-the-badge)
 
 ---
 
@@ -78,14 +76,14 @@ Required command parameters are shown in brackets (`[required]`) while optional 
 
 ### Prerequisites
 
-- Python 3.9+
+- Python 3.13
 - Poetry (for dependency management)
 
 ### Steps
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/AsyncCommunityDiscord/DJ4H.git
+   git clone https://github.com/GravenDev/DJ4H.git
    cd DJ4H
    ```
 2. Install dependencies with Poetry:
@@ -114,7 +112,7 @@ poetry run python main.py
 
 ```bash
 # Build and run with Docker Compose
-docker-compose -f compose.prod.yaml up -d
+docker compose -f compose.prod.yaml up -d
 ```
 
 Make a deployment
@@ -130,7 +128,7 @@ git push origin vx.x.x
 
 ```bash
 # Build and run with Docker Compose
-docker-compose up -d
+docker compose up -d
 ```
 
 ## Development
